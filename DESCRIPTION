@@ -1,8 +1,8 @@
 Package: funMoDisco
 Type: Package
 Title: Motif Discovery in Functional Data
-Version: 1.0.0
-Date: 2025-03-22
+Version: 1.1.0
+Date: 2025-11-06
 Authors@R: c(
     person(given = c("Marzia", "Angela"), family = "Cremona", role = "aut"),
     person(given = "Francesca", family = "Chiaromonte", role = "aut"),
@@ -24,10 +24,10 @@ License: GPL (>= 2)
 Suggests: knitr, rmarkdown, tinytest, kableExtra, R.rsp
 Encoding: UTF-8
 RoxygenNote: 7.3.2
-Imports: Rcpp (>= 1.0.12),dendextend,fastcluster,
-        fda,ggtext,methods,purrr,scales,shinyWidgets,shinybusy,shinyjs,
-        zoo,utils,class,combinat,data.table,stringr
-Depends: R (>= 3.5.0),dplyr,parallel,ggplot2,shiny,progress
+Imports: Rcpp (>= 1.0.12),RcppArmadillo,dendextend,fastcluster,
+        fda,ggtext,methods,purrr,scales,
+        utils,class,combinat,data.table,stringr
+Depends: R (>= 3.5.0),dplyr,parallel,ggplot2,progress
 LinkingTo: Rcpp, RcppArmadillo
 SystemRequirements: C++20
 LazyData: true
@@ -35,6 +35,6 @@ VignetteBuilder: R.rsp
 BuildVignettes: true
 Language: en-US
 NeedsCompilation: yes
-Packaged: 2025-04-10 17:25:29 UTC; niccoloferesini
+Packaged: 2025-11-07 14:30:38 UTC; jdiiori
 Repository: CRAN
-Date/Publication: 2025-04-15 20:10:09 UTC
+Date/Publication: 2025-11-07 15:50:02 UTC

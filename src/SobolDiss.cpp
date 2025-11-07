@@ -13,7 +13,9 @@ double SobolDiss::distance(const KMA::matrix& y,
   
   unsigned int n_rows = 0;
   for(arma::uword i = 0; i < y.n_rows; ++i)
-    if(is_finite(y.row(i))){n_rows += 1;}
+    if (y.row(i).is_finite()) { n_rows += 1; }
+    //if(is_finite(y.row(i))){n_rows += 1;}
+
     
   arma::urowvec length_dom(y.n_cols,arma::fill::value(n_rows)); //length of the domain
     

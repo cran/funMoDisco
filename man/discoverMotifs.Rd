@@ -146,68 +146,56 @@ The following parameters are specific to the \code{funBIalign} algorithm:
 \donttest{
 # Example 1: Discover motifs using ProbKMA
 
-# Define dissimilarity measure and weight parameter
-diss <- 'd0_d1_L2'
-alpha <- 0.5
+if (requireNamespace("RcppArmadillo", quietly = TRUE)) {
 
-# Define number of motifs and their minimum lengths
-K <- c(2, 3)
-c <- c(61, 51)
-n_init <- 10
+  # Define dissimilarity measure and weight parameter
+  diss <- 'd0_d1_L2'
+  alpha <- 0.5
 
-# Load simulated data
-data("simulated200")
+  # Define number of motifs and their minimum lengths
+  K <- c(2, 3)
+  c <- c(61, 51)
+  n_init <- 3
 
-# Perform motif discovery using ProbKMA
-results <- funMoDisco::discoverMotifs(
-  Y0 = simulated200$Y0,
-  method = "ProbKMA",
-  stopCriterion = "max",
-  name = tempdir(),
-  plot = TRUE,
-  probKMA_options = list(
-    Y1 = simulated200$Y1,
-    K = K,
-    c = c,
-    n_init = n_init,
-    diss = diss,
-    alpha = alpha
-  ),
-  worker_number = NULL
-)
+  # Load simulated data
+  data("simulated200")
 
-# Modify silhouette threshold and re-run post-processing
-results <- funMoDisco::discoverMotifs(
-  Y0 = simulated200$Y0,
-  method = "ProbKMA",
-  stopCriterion = "max",
-  name = tempdir(),
-  plot = TRUE,
-  probKMA_options = list(
-    Y1 = simulated200$Y1,
-    K = K,
-    c = c,
-    n_init = n_init,
-    diss = diss,
-    alpha = alpha,
-    sil_threshold = 0.5
-  ),
-  worker_number = NULL
-)
+  # Perform motif discovery using ProbKMA
+  tmp_path <- tempdir()  
 
-# Example 2: Discover motifs using funBIalign
-results_funbialign <- funMoDisco::discoverMotifs(
-  Y0 = simulated200$Y0,
-  method = "funBIalign",
-  stopCriterion = 'Variance',
-  name = tempdir(),
-  plot = TRUE,
-  funBIalign_options = list(
-    portion_len = 60,
-    min_card = 3,
-    cut_off = 1.0
+  results <- funMoDisco::discoverMotifs(
+    Y0 = simulated200$Y0,
+    method = "ProbKMA",
+    stopCriterion = "max",
+    name = tempdir(),
+    plot = FALSE,
+    probKMA_options = list(
+      Y1 = simulated200$Y1,
+      K = K,
+      c = c,
+      n_init = n_init,
+      diss = diss,
+      alpha = alpha
+    ),
+    worker_number = 1
   )
-)
+
+  # Example 2: Discover motifs using funBIalign
+  results_funbialign <- funMoDisco::discoverMotifs(
+    Y0 = simulated200$Y0,
+    method = "funBIalign",
+    stopCriterion = "fMSR",
+    name = tempdir(),
+    plot = FALSE,
+    funBIalign_options = list(
+      portion_len = 60,
+      min_card = 3,
+      cut_off = 1.0
+    ),
+    worker_number = 1
+    )
+    
+  } 
 }
 
 }
